@@ -90,26 +90,6 @@ if (productosEnCarritoLS) {
 
 function agregarAlCarrito(e) {
 
-    Toastify({
-        text: "Producto agregado",
-        duration: 2000,
-        close: true,
-        gravity: "top", 
-        position: "right", 
-        stopOnFocus: true,
-        style: {
-          background: "linear-gradient(to right, #a8a9ab, #5f5c58)",
-          borderRadius: "2rem",
-          textTransform: "uppercase",
-          fontSize: ".75rem"
-        },
-        offset: {
-            x: '1.5rem', 
-            y: '1.5rem' 
-          },
-        onClick: function(){} 
-      }).showToast();
-
     const idBoton = e.currentTarget.id;
     const productoAgregado = productos.find(producto => producto.id === idBoton);
 
@@ -120,10 +100,15 @@ function agregarAlCarrito(e) {
         productoAgregado.cantidad = 1;
         productosEnCarrito.push(productoAgregado);
     }
-
     actualizarNumerito();
-
     localStorage.setItem("productos-en-carrito", JSON.stringify(productosEnCarrito));
+    Swal.fire({
+        position: 'top-end',
+        icon: 'success',
+        title: 'Producto agregado al Carrito!',
+        showConfirmButton: false,
+        timer: 750
+      })
 }
 
 function actualizarNumerito() {

@@ -72,26 +72,6 @@ function actualizarBotonesEliminar() {
 }
 
 function eliminarDelCarrito(e) {
-    Toastify({
-        text: "Producto eliminado",
-        duration: 3000,
-        close: true,
-        gravity: "top", 
-        position: "right", 
-        stopOnFocus: true, 
-        style: {
-          background: "linear-gradient(to right, #4b33a8, #785ce9)",
-          borderRadius: "2rem",
-          textTransform: "uppercase",
-          fontSize: ".75rem"
-        },
-        offset: {
-            x: '1.5rem', 
-            y: '1.5rem' 
-          },
-        onClick: function(){} 
-      }).showToast();
-
     const idBoton = e.currentTarget.id;
     const index = productosEnCarrito.findIndex(producto => producto.id === idBoton);
     
@@ -99,12 +79,12 @@ function eliminarDelCarrito(e) {
     cargarProductosCarrito();
 
     localStorage.setItem("productos-en-carrito", JSON.stringify(productosEnCarrito));
-
+    Swal.fire('Su producto ha sido Eliminado!')
 }
 
 botonVaciar.addEventListener("click", vaciarCarrito);
-function vaciarCarrito() {
 
+function vaciarCarrito() {
     Swal.fire({
         title: '¿Estás seguro?',
         icon: 'question',
